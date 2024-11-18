@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Penetration Testing Guidance Tool</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1d1f27;
+            color: #ddd;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100%;
+            overflow-y: auto;
+            flex-direction: column;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #0f172a;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #fff;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #4a90e2;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 80px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .left-container, .right-container {
+            width: 48%;
+        }
+
+        .container {
+            background: #2c2f3d;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        h1, h2 {
+            color: #4a90e2;
+            font-size: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        label, select, input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #444;
+            border: 1px solid #333;
+            color: #fff;
+        }
+
+        select, input {
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4a90e2;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #357ab7;
+        }
+
+        pre {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-top: 20px;
+            color: #ddd;
+            font-size: 14px;
+            height: 200px;
+            line-height: 1.6;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            color: #bbb;
+            margin-bottom: 5px;
+        }
+
+        .contact-section, .footer {
+            background-color: #0f172a;
+            color: #ddd;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact-section input, .contact-section textarea {
+            width: 80%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #444;
+            border: 1px solid #333;
+            color: #fff;
+        }
+
+        .contact-section button {
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+            background-color: #4a90e2;
+            padding: 12px;
+        }
+
+        .footer {
+            font-size: 14px;
+            margin-top: 40px;
+            width: 100%;
+
+        }
+
+        .footer a {
+            color: #4a90e2;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div class="content-wrapper">
+        <!-- Left Container (Form Inputs) -->
+        <div class="left-container">
+            <div class="container">
+                <h1>Penetration Testing Guidance Tool</h1>
+
+                <!-- Phase Selection -->
+                <div class="input-group">
+                    <label for="phase">Select Phase:</label>
+                    <select id="phase" required>
+                        <option value="reconnaissance">Reconnaissance</option>
+                        <option value="enumeration">Enumeration</option>
+                    </select>
+                </div>
+
+                <!-- Target Type Selection -->
+                <div class="input-group">
+                    <label for="target-type">Select Target Type:</label>
+                    <select id="target-type" required>
+                        <option value="ip">IP Address</option>
+                        <option value="domain">Website Domain</option>
+                        <option value="subnet">Subnet</option>
+                        <option value="service">Service</option>
+                        <option value="network">Network</option>
+                        <option value="host">Host</option>
+                        <option value="custom">Custom Target</option>
+                    </select>
+                </div>
+
+                <!-- Input for Target Details -->
+                <div class="input-group">
+                    <label for="target-details">Enter Target Details:</label>
+                    <input type="text" id="target-details" placeholder="Enter target details" required>
+                </div>
+
+                <!-- OS Selection -->
+                <div class="input-group">
+                    <label for="os">Select Operating System:</label>
+                    <select id="os" required>
+                        <option value="windows">Windows</option>
+                        <option value="macos">macOS</option>
+                        <option value="ubuntu">Ubuntu</option>
+                        <option value="kali">Kali Linux</option>
+                        <option value="parrot">Parrot OS</option>
+                        <option value="fedora">Fedora</option>
+                        <option value="debian">Debian</option>
+                        <option value="arch">Arch Linux</option>
+                    </select>
+                </div>
+
+                <button onclick="generateGuidance()">Generate Guidance</button>
+            </div>
+        </div>
+
+        <!-- Right Container (Generated Content) -->
+        <div class="right-container">
+            <div class="container">
+                <h2>Guidance:</h2>
+                <pre id="result">Select a phase and click "Generate Guidance" to view the steps.</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div class="contact-section">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need further assistance, feel free to reach out!</p>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2024 Penetration Testing Guidance Tool. All Rights Reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </p>
+    </div>
+
+    <script>
+        function generateGuidance() {
+            const phase = document.getElementById('phase').value;
+            const targetType = document.getElementById('target-type').value;
+            const targetDetails = document.getElementById('target-details').value;
+            const os = document.getElementById('os').value;
+
+            document.getElementById('result').innerText = "Generating guidance...";
+
+            fetch('/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    phase: phase,
+                    targetType: targetType,
+                    targetDetails: targetDetails,
+                    os: os
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = data.result;
+            })
+            .catch(error => {
+                document.getElementById('result').innerText = 'Error generating guidance. Please try again.';
+            });
+        }
+    </script>
+</body>
+</html>
